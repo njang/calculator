@@ -4,7 +4,7 @@ const assemble = () => {
 	let displayElement = $('<input>', {id: 'display', disabled: true})
 	$('.calculator').append(displayElement);
 	$('.calculator').append($('<br>'));
-	let buttons = [["&plusmn;", "&percnt;", "&radic;", "&div;"], [7, 8, 9, "&times;"], [4, 5, 6, "&ndash;"], [1, 2, 3, "&plus;"], [".", 0, "&equals;", "C"]];
+	let buttons = [["&plusmn;", "&radic;", "&percnt;", "&div;"], [7, 8, 9, "&times;"], [4, 5, 6, "&ndash;"], [1, 2, 3, "&plus;"], [".", 0, "&equals;", "C"]];
 	for (let i = 0; i < buttons.length; i++) {
 		for (let j = 0; j < buttons[i].length; j++) {
 			let buttonValue = (Number.isInteger(buttons[i][j]) ? buttons[i][j] : buttons[i][j].replace(/[^A-Za-z.]/g, ''));
@@ -37,7 +37,12 @@ $(document).ready("#button").click(function(event) {
 		$("#display").attr("placeholder", "");
 
 	} else if (entered == "plusmn") {
-
+		if (digits[0] != "-") {
+			digits.unshift("-");
+		} else {
+			digits.shift();
+		}
+	  $("#display").attr("placeholder", digits.join(''));
 	} else if (entered == "equals") {
 		$('[value="."]').attr('disabled', false);
 		equation.push(Number(digits.join('')));
@@ -54,6 +59,9 @@ $(document).ready("#button").click(function(event) {
 				break;
 			case "div":
 				answer = equation[0] / equation[2];
+				break;
+			case "percnt":
+				answer = equation[0] % equation[2];
 				break;
 		}
 		$("#display").attr("placeholder", answer);
