@@ -14,6 +14,7 @@ const initalize = () => {
 		}
 		$('.calculator').append($('<br>'));
 	}
+	$('[value="C"]').attr('class', 'bg-danger text-white font-weight-bold');
 }
 
 // Function to enable decimal button.
