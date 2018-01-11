@@ -30,7 +30,6 @@ $(document).ready("#button").click(function(event) {
 		if (event.target.value == '.') {
 			$('[value="."]').attr('disabled', true);
 		}
-		equation = [];
 		digits.push(entered);
 	  $("#display").attr("placeholder", digits.join(''));
 	} else if (entered == "C") {
@@ -42,13 +41,13 @@ $(document).ready("#button").click(function(event) {
 		$('[value="."]').attr('disabled', false);
 		if (equation[0]) {
 			answer = Math.sqrt(equation[0]);
-			equation = [answer];
 		} else if (Number(digits.join(''))) {
 			answer = Math.sqrt(Number(digits.join('')));
-			digits = [];		
+			digits = [];
 		} else {
 			answer = "";
 		}
+		equation = [answer];
 		$("#display").attr("placeholder", answer);
 	}	else if (entered == "plusmn") {
 		$('[value="."]').attr('disabled', false);
@@ -85,8 +84,8 @@ $(document).ready("#button").click(function(event) {
 	} else {
 		$('[value="."]').attr('disabled', false);
 		operator = entered;
-		if (!equation[0]) {
-			equation.push(Number(digits.join('')));
+		if (digits.length != 0) {
+			equation = [Number(digits.join(''))];
 		}
 		digits = [];
 		equation.push(operator);
