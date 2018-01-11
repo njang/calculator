@@ -36,7 +36,7 @@ $(document).ready("#button").click(function(event) {
 		enableDecimal();
 		digits = [];
 		equation = [];
-		$("#display").attr("placeholder", "");
+		$("#display").attr("placeholder", "0");
 	} else if (entered == "radic") {
 		enableDecimal();
 		if (digits.length > 0) {
