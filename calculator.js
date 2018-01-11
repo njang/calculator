@@ -51,6 +51,10 @@ $(document).ready("#button").click(function(event) {
 		$("#display").attr("placeholder", answer);
 	}	else if (entered == "plusmn") {
 		$('[value="."]').attr('disabled', false);
+		if (digits.length == 0 && equation[0]) {
+			alert(equation[0]);
+			digits = equation[0].toString().split('');
+		}
 		if (digits[0] != "-") {
 			digits.unshift("-");
 		} else {
