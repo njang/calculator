@@ -20,39 +20,54 @@ const assemble = () => {
 
 // Display numbers input by buttons
 let digits = [];
-let argument = 0;
 let operator = "";
+let equation = [];
 $(document).ready("#button").click(function(event) {
 	// assemble number from left to right
 	// if operator, remember it, and start storing the second number.
 	// if equal sign, execute the arithmetics.
-	let entered = event.target.value;
-	switch (entered) {
-		case "plus":
-			entered = "+";
-			break;
-		case "ndash":
-			entered = "-";
-			break;
-		case "times":
-			entered = "*";
-			break;
-		case "div":
-			entered = "/";
-			break;
+	// disable decimal button after it's been pressed to prevent two decimals being added to a number.
+	if (event.target.value == '.') {
+		$('[value="."]').attr('disabled', true);
 	}
-	digits.push(entered);
 
-	console.log(digits);
+	let entered = event.target.value;
+
+	if (Number.isInteger(Number(entered))) {
+		digits.push(entered);
+	} else if (entered == "equals") {
+		equation.push(Number(digits.join('')));
+		digits = [];
+		console.log(equation);
+	} else {
+		operator = entered;
+		equation.push(Number(digits.join('')));
+		digits = [];
+		equation.push(operator);
+	}
+
+
+
+	// switch (entered) {
+	// 	case "plus":
+	// 		operator = "+";
+	// 		break;
+	// 	case "ndash":
+	// 		operator = "-";
+	// 		break;
+	// 	case "times":
+	// 		operator = "*";
+	// 		break;
+	// 	case "div":
+	// 		operator = "/";
+	// 		break;
+	// }
+
 	// console.log(Number(digits.join('')));
 
 
 
 
-	// // disable decimal button after it's been pressed to prevent two decimals being added to a number.
-	// if (event.target.value == '.') {
-	// 	$('[value="."]').attr('disabled', true);
-	// }
 	// if (Number.isInteger(Number(event.target.value)) || event.target.value == '.') {
 	// 	digits.push(event.target.value);	
  //  } else {
