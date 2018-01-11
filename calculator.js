@@ -30,17 +30,28 @@ $(document).ready("#button").click(function(event) {
 		if (event.target.value == '.') {
 			$('[value="."]').attr('disabled', true);
 		}
+		equation = [];
 		digits.push(entered);
 	  $("#display").attr("placeholder", digits.join(''));
 	} else if (entered == "C") {
+		$('[value="."]').attr('disabled', false);
 		digits = [];
 		equation = [];
 		$("#display").attr("placeholder", "");
 	} else if (entered == "radic") {
-		answer = Math.sqrt(Number(digits.join('')));
+		$('[value="."]').attr('disabled', false);
+		if (equation[0]) {
+			answer = Math.sqrt(equation[0]);
+			equation = [answer];
+		} else if (Number(digits.join(''))) {
+			answer = Math.sqrt(Number(digits.join('')));
+			digits = [];		
+		} else {
+			answer = "";
+		}
 		$("#display").attr("placeholder", answer);
-		digits = [];		
 	}	else if (entered == "plusmn") {
+		$('[value="."]').attr('disabled', false);
 		if (digits[0] != "-") {
 			digits.unshift("-");
 		} else {
