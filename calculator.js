@@ -23,8 +23,8 @@ const enableDecimal = () => {
 };
 
 let digits = [];
-let operator = "";
 let equation = [];
+// Define calculator logic
 $(document).ready("#button").click(function(event) {
 	let entered = event.target.value;
 	if (Number.isInteger(Number(entered)) || entered == ".") {
@@ -85,19 +85,19 @@ $(document).ready("#button").click(function(event) {
 		$("#display").attr("placeholder", answer);
 		equation = [answer];
 		digits = [];
-	} else {
+	} else {	// handle all the operator button presses: plus, minus, multiply, and divide
 		enableDecimal();
+		// if user selects operator after having selected an operator already, replace the old one with new one by first removing the old one.
 		if (equation.length == 2) {
 			equation.pop();
 		}
-		operator = entered;
+		// enable chaining logic. If the user did not enter any new digits prior to choosing an operator, assume the answer from the previous calculation to be the first number.
 		if (digits.length != 0) {
 			equation = [Number(digits.join(''))];
 		}
 		digits = [];
-		equation.push(operator);
+		equation.push(entered);
 	}
 });
-
 
 initalize();
