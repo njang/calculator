@@ -27,19 +27,36 @@ $(document).ready("#button").click(function(event) {
 	// if operator, remember it, and start storing the second number.
 	// if equal sign, execute the arithmetics.
 	// disable decimal button after it's been pressed to prevent two decimals being added to a number.
-	if (event.target.value == '.') {
-		$('[value="."]').attr('disabled', true);
-	}
-
 	let entered = event.target.value;
-
-	if (Number.isInteger(Number(entered))) {
+	if (Number.isInteger(Number(entered)) || entered == ".") {
+		if (event.target.value == '.') {
+			$('[value="."]').attr('disabled', true);
+		}
 		digits.push(entered);
+	  $("#display").attr("placeholder", digits.join(''));
 	} else if (entered == "equals") {
+		$('[value="."]').attr('disabled', false);
 		equation.push(Number(digits.join('')));
+		let answer = 0;
+		switch (equation[1]) {
+			case "plus":
+				answer = equation[0] + equation[2];
+				break;
+			case "ndash":
+				answer = equation[0] - equation[2];
+				break;
+			case "times":
+				answer = equation[0] * equation[2];
+				break;
+			case "div":
+				answer = equation[0] / equation[2];
+				break;
+		}
+		$("#display").attr("placeholder", answer);
+		equation = [];
 		digits = [];
-		console.log(equation);
 	} else {
+		$('[value="."]').attr('disabled', false);
 		operator = entered;
 		equation.push(Number(digits.join('')));
 		digits = [];
@@ -47,57 +64,6 @@ $(document).ready("#button").click(function(event) {
 	}
 
 
-
-	// switch (entered) {
-	// 	case "plus":
-	// 		operator = "+";
-	// 		break;
-	// 	case "ndash":
-	// 		operator = "-";
-	// 		break;
-	// 	case "times":
-	// 		operator = "*";
-	// 		break;
-	// 	case "div":
-	// 		operator = "/";
-	// 		break;
-	// }
-
-	// console.log(Number(digits.join('')));
-
-
-
-
-	// if (Number.isInteger(Number(event.target.value)) || event.target.value == '.') {
-	// 	digits.push(event.target.value);	
- //  } else {
- //  	argument = Number(digits.join(''));
- //  	digits = [];
-	// 	$('[value="."]').attr('disabled', false);
- //  	switch (event.target.value) {
-	//   	case "plus":
-	//   		operator = "+";
-	//   		// console.log("plus");
-	//   		break;
-	//   	case "ndash":
-	//   		operator = "-"
-	//   		// console.log("minus");
-	//   		break;
-	//   	case "times":
-	//   		operator = "x"
-	//   		// console.log("times");
-	//   		break;
-	//   	case "div":
-	//   		operator = "/"
-	//   		// console.log("div");
-	//   		break;
-	// 		default:	
-	// 			argument += Number(digits.join(''));
-	//   		// console.log("equals");
- //  	}
- //  }
-  // console.log(argument, digits.join(''), operator);
-  $("#display").attr("placeholder", digits.join(''));
 });
 
 
