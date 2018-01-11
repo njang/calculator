@@ -13,5 +13,12 @@ const assemble = () => {
 	}
 }
 
+// Display numbers input by buttons
+let digits = "";
+$('button').click(() => {
+	alert('Cick!');
+	// alert($(this.value));
+});
+
 assemble();
 //
