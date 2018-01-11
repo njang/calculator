@@ -13,3 +13,15 @@ input {
 button:focus {
   outline: none !important;
 }
+
+@media (max-width: 1080px) {
+	button {
+		width: 25vw;
+		height: 25vw;
+	}
+
+	input {
+		width: 100vw;
+		height: calc(100vh - 125vw);
+	}
+}
