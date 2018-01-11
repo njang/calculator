@@ -4,9 +4,7 @@ const assemble = () => {
 	let displayElement = $('<input>', {id: 'display', disabled: true})
 	$('.calculator').append(displayElement);
 	$('.calculator').append($('<br>'));
-	let buttons = [["&plusmn;", "&percnt;", "&radic;", "C"], [7, 8, 9, "&div;"], [4, 5, 6, "&times;"], [1, 2, 3, "&ndash;"], [".", 0, "&equals;", "&plus;"]];
-
-	// let buttons = [[7, 8, 9, "/"], [4, 5, 6, "*"], [1, 2, 3, "-"], [".", 0, "&equals;", "+"]];
+	let buttons = [["&plusmn;", "&percnt;", "&radic;", "&div;"], [7, 8, 9, "&times;"], [4, 5, 6, "&ndash;"], [1, 2, 3, "&plus;"], [".", 0, "&equals;", "C"]];
 	for (let i = 0; i < buttons.length; i++) {
 		for (let j = 0; j < buttons[i].length; j++) {
 			let buttonValue = (Number.isInteger(buttons[i][j]) ? buttons[i][j] : buttons[i][j].replace(/[^A-Za-z.]/g, ''));
