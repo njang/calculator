@@ -15,9 +15,9 @@ const assemble = () => {
 
 // Display numbers input by buttons
 let digits = "";
-$('button').click(() => {
-	alert('Cick!');
-	// alert($(this.value));
+
+$(document).ready("#button").click(function(event) {
+  console.log(event.target.value + ' button clicked');
 });
 
 assemble();
