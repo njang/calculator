@@ -1,3 +1,5 @@
+This calculator app can be used here. ([link](https://njang.github.io/calculator/))
+
 # Build a JavaScript Calculator
 
 * Objective: Build a CodePen.io app that is functionally similar to this: https://codepen.io/FreeCodeCamp/full/rLJZrA/.
