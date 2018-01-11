@@ -1,11 +1,15 @@
 body {
 	font-size: 2em;
 }
-.btn {
+button {
 	width: 3em;
 	height: 3em;
 }
 input {
-	width: 6em;
+	width: 12em;
 	text-align: right;
+}
+
+button:focus {
+  outline: none !important;
 }

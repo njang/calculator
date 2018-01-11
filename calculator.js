@@ -4,13 +4,13 @@ const assemble = () => {
 	let displayElement = $('<input>', {id: 'display', disabled: true})
 	$('.calculator').append(displayElement);
 	$('.calculator').append($('<br>'));
+	let buttons = [["&plusmn;", "&percnt;", "&radic;", "C"], [7, 8, 9, "&div;"], [4, 5, 6, "&times;"], [1, 2, 3, "&ndash;"], [".", 0, "&equals;", "&plus;"]];
 
-	let buttons = [[7, 8, 9, "&div;"], [4, 5, 6, "&times;"], [1, 2, 3, "&ndash;"], [".", 0, "&equals;", "&plus;"]];
 	// let buttons = [[7, 8, 9, "/"], [4, 5, 6, "*"], [1, 2, 3, "-"], [".", 0, "&equals;", "+"]];
 	for (let i = 0; i < buttons.length; i++) {
 		for (let j = 0; j < buttons[i].length; j++) {
-			let buttonValue = (Number.isInteger(buttons[i][j]) ? buttons[i][j] : buttons[i][j].replace(/[^a-z.]/g, ''));
-			let buttonElement = $('<button>', {class: 'btn bg-dark text-white font-weight-bold', value: buttonValue })
+			let buttonValue = (Number.isInteger(buttons[i][j]) ? buttons[i][j] : buttons[i][j].replace(/[^A-Za-z.]/g, ''));
+			let buttonElement = $('<button>', {class: 'bg-dark text-white font-weight-bold', value: buttonValue })
 			buttonElement.html(buttons[i][j]);
 			$('.calculator').append(buttonElement);	
 		}
@@ -34,6 +34,12 @@ $(document).ready("#button").click(function(event) {
 		}
 		digits.push(entered);
 	  $("#display").attr("placeholder", digits.join(''));
+	} else if (entered == "C") {
+		digits = [];
+		$("#display").attr("placeholder", "");
+
+	} else if (entered == "plusmn") {
+
 	} else if (entered == "equals") {
 		$('[value="."]').attr('disabled', false);
 		equation.push(Number(digits.join('')));
