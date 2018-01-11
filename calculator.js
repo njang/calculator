@@ -1,7 +1,7 @@
 
-// Assemble calculator
-const assemble = () => {
-	let displayElement = $('<input>', {id: 'display', disabled: true})
+// Initialize calculator
+const initalize = () => {
+	let displayElement = $('<input>', {id: 'display', placeholder: 0, disabled: true})
 	$('.calculator').append(displayElement);
 	$('.calculator').append($('<br>'));
 	let buttons = [["&plusmn;", "&radic;", "&percnt;", "&div;"], [7, 8, 9, "&times;"], [4, 5, 6, "&ndash;"], [1, 2, 3, "&plus;"], [".", 0, "&equals;", "C"]];
@@ -16,15 +16,15 @@ const assemble = () => {
 	}
 }
 
-// Display numbers input by buttons
+// Function to enable decimal button.
+const enableDecimal = () => {
+	$('[value="."]').attr('disabled', false);
+};
+
 let digits = [];
 let operator = "";
 let equation = [];
 $(document).ready("#button").click(function(event) {
-	// assemble number from left to right
-	// if operator, remember it, and start storing the second number.
-	// if equal sign, execute the arithmetics.
-	// disable decimal button after it's been pressed to prevent two decimals being added to a number.
 	let entered = event.target.value;
 	if (Number.isInteger(Number(entered)) || entered == ".") {
 		if (event.target.value == '.') {
@@ -33,24 +33,24 @@ $(document).ready("#button").click(function(event) {
 		digits.push(entered);
 	  $("#display").attr("placeholder", digits.join(''));
 	} else if (entered == "C") {
-		$('[value="."]').attr('disabled', false);
+		enableDecimal();
 		digits = [];
 		equation = [];
 		$("#display").attr("placeholder", "");
 	} else if (entered == "radic") {
-		$('[value="."]').attr('disabled', false);
-		if (equation[0]) {
-			answer = Math.sqrt(equation[0]);
-		} else if (Number(digits.join(''))) {
+		enableDecimal();
+		if (digits.length > 0) {
 			answer = Math.sqrt(Number(digits.join('')));
-			digits = [];
+		} else if (equation[0]) {
+			answer = Math.sqrt(equation[0]);
 		} else {
 			answer = "";
 		}
+		digits = [];
 		equation = [answer];
 		$("#display").attr("placeholder", answer);
 	}	else if (entered == "plusmn") {
-		$('[value="."]').attr('disabled', false);
+		enableDecimal();
 		if (digits.length == 0 && equation[0]) {
 			digits = equation[0].toString().split('');
 		}
@@ -61,7 +61,7 @@ $(document).ready("#button").click(function(event) {
 		}
 	  $("#display").attr("placeholder", digits.join(''));
 	} else if (entered == "equals") {
-		$('[value="."]').attr('disabled', false);
+		enableDecimal();
 		equation.push(Number(digits.join('')));
 		let answer = 0;
 		switch (equation[1]) {
@@ -85,8 +85,7 @@ $(document).ready("#button").click(function(event) {
 		equation = [answer];
 		digits = [];
 	} else {
-		$('[value="."]').attr('disabled', false);
-		
+		enableDecimal();
 		if (equation.length == 2) {
 			equation.pop();
 		}
@@ -99,4 +98,5 @@ $(document).ready("#button").click(function(event) {
 	}
 });
 
-assemble();
+
+initalize();
