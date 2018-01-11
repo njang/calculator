@@ -36,7 +36,11 @@ $(document).ready("#button").click(function(event) {
 		digits = [];
 		$("#display").attr("placeholder", "");
 
-	} else if (entered == "plusmn") {
+	} else if (entered == "radic") {
+		answer = Math.sqrt(Number(digits.join('')));
+		$("#display").attr("placeholder", answer);
+		digits = [];		
+	}	else if (entered == "plusmn") {
 		if (digits[0] != "-") {
 			digits.unshift("-");
 		} else {
@@ -65,12 +69,14 @@ $(document).ready("#button").click(function(event) {
 				break;
 		}
 		$("#display").attr("placeholder", answer);
-		equation = [];
+		equation = [answer];
 		digits = [];
 	} else {
 		$('[value="."]').attr('disabled', false);
 		operator = entered;
-		equation.push(Number(digits.join('')));
+		if (!equation[0]) {
+			equation.push(Number(digits.join('')));
+		}
 		digits = [];
 		equation.push(operator);
 	}
