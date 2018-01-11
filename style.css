@@ -1,22 +1,39 @@
 body {
 	font-size: 2em;
+	position: absolute;
+	left: calc((100vw - 12em) / 2);
+	right: calc((100vw - 12em) / 2);
+	width: 12em;
+	top: calc((100vh - 18em) / 2);
+	bottom: calc((100vh - 18em) / 2);
+	height: 18em;
 }
+
+input {
+	width: 12em;
+	height: 3em;
+	text-align: right;
+}
+
 button {
 	width: 3em;
 	height: 3em;
-}
-input {
-	width: 12em;
-	text-align: right;
 }
 
 button:focus {
   outline: none !important;
 }
 
-@media (max-width: 1080px) {
+@media (max-width: 768px) {
 	body {
-		font-size: 12vw;
+		position: absolute;
+		left: 0;
+		right: 0;
+		width: 100vw;
+		top: 0;
+		bottom: 0;
+		height: 100vh;
+		font-size: 10vw;
 	}
 
 	button {
