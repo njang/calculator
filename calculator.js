@@ -10,7 +10,7 @@ const assemble = () => {
 	for (let i = 0; i < buttons.length; i++) {
 		for (let j = 0; j < buttons[i].length; j++) {
 			let buttonValue = (Number.isInteger(buttons[i][j]) ? buttons[i][j] : buttons[i][j].replace(/[^a-z.]/g, ''));
-			let buttonElement = $('<button>', {class: 'btn', value: buttonValue })
+			let buttonElement = $('<button>', {class: 'btn bg-dark text-white font-weight-bold', value: buttonValue })
 			buttonElement.html(buttons[i][j]);
 			$('.calculator').append(buttonElement);	
 		}
@@ -62,9 +62,6 @@ $(document).ready("#button").click(function(event) {
 		digits = [];
 		equation.push(operator);
 	}
-
-
 });
-
 
 assemble();
