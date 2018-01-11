@@ -34,8 +34,8 @@ $(document).ready("#button").click(function(event) {
 	  $("#display").attr("placeholder", digits.join(''));
 	} else if (entered == "C") {
 		digits = [];
+		equation = [];
 		$("#display").attr("placeholder", "");
-
 	} else if (entered == "radic") {
 		answer = Math.sqrt(Number(digits.join('')));
 		$("#display").attr("placeholder", answer);
