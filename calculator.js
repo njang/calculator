@@ -52,7 +52,6 @@ $(document).ready("#button").click(function(event) {
 	}	else if (entered == "plusmn") {
 		$('[value="."]').attr('disabled', false);
 		if (digits.length == 0 && equation[0]) {
-			alert(equation[0]);
 			digits = equation[0].toString().split('');
 		}
 		if (digits[0] != "-") {
@@ -87,6 +86,10 @@ $(document).ready("#button").click(function(event) {
 		digits = [];
 	} else {
 		$('[value="."]').attr('disabled', false);
+		
+		if (equation.length == 2) {
+			equation.pop();
+		}
 		operator = entered;
 		if (digits.length != 0) {
 			equation = [Number(digits.join(''))];
