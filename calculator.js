@@ -1,6 +1,6 @@
 
 // Initialize calculator
-const initalize = () => {
+(() => {
 	let displayElement = $('<input>', {id: 'display', placeholder: 0, disabled: true})
 	$('.calculator').append(displayElement);
 	$('.calculator').append($('<br>'));
@@ -15,7 +15,7 @@ const initalize = () => {
 		$('.calculator').append($('<br>'));
 	}
 	$('[value="C"]').attr('class', 'bg-danger text-white font-weight-bold');
-}
+})();
 
 // Function to enable decimal button.
 const enableDecimal = () => {
@@ -100,4 +100,3 @@ $(document).ready("#button").click(function(event) {
 	}
 });
 
-initalize();
